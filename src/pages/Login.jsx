@@ -26,7 +26,6 @@ const Login = () => {
       const { user, token } = res.data;
       authenticate({ user, token });
     } catch (e) {
-      console.log(e)
       const message = e?.response?.data?.message ?? e?.message ?? 'Something went wrong, please try again';
       toast.error(message);
     } finally {

@@ -8,7 +8,7 @@ const Overview = () => {
   const {
     data: { pages = [] } = {},
     isLoading: isCollectionsLoading,
-  } = useGetContributionsQuery({ limit: 12 });
+  } = useGetContributionsQuery({ limit: 10 });
   const collections = pages.flatMap((p) => p?.contributions || []);
   return (
     <>
@@ -35,16 +35,16 @@ const Overview = () => {
                 <p className="text-sm text-ellipsis whitespace-nowrap overflow-hidden mt-1">Contributed Amount</p>
               </div>
             </Card>
+             <Card className="px-6 py-4">
+              <div className="text-lg md:text-xl font-semibold text-gray-800">{Number(creditTransaction).toLocaleString('en-NG')}</div>
+              <div className="flex items-center mb-1">
+                <p className="text-sm text-ellipsis whitespace-nowrap overflow-hidden mt-1">Credit Transaction</p>
+              </div>
+            </Card>
             <Card className="px-6 py-4">
               <div className="text-lg md:text-xl font-semibold text-gray-800">{Number(debitTransaction).toLocaleString('en-NG')}</div>
               <div className="flex items-center mb-1">
                 <p className="text-sm text-ellipsis whitespace-nowrap overflow-hidden mt-1">Debit Transaction</p>
-              </div>
-            </Card>
-            <Card className="px-6 py-4">
-              <div className="text-lg md:text-xl font-semibold text-gray-800">{Number(creditTransaction).toLocaleString('en-NG')}</div>
-              <div className="flex items-center mb-1">
-                <p className="text-sm text-ellipsis whitespace-nowrap overflow-hidden mt-1">Credit Transaction</p>
               </div>
             </Card>
             <Card className="px-6 py-4">

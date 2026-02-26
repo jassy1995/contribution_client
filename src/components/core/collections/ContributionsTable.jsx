@@ -123,7 +123,7 @@ const ContributionsTable = ({ collections, showDownload = true, showTotal = true
 
   return (
     <div className="w-full overflow-x-auto">
-      {showDownload && (
+      {showDownload ? (
         <div className="flex justify-end mb-3">
           <SimpleDropdown
             trigger={
@@ -138,6 +138,10 @@ const ContributionsTable = ({ collections, showDownload = true, showTotal = true
             ]}
             direction="bottom-right"
           />
+        </div>
+      ):(
+        <div className='mb-4'>
+          <h1 className='font-semibold text-xl'>Recent Collection</h1>
         </div>
       )}
       <table className="min-w-[700px] w-full border border-gray-200 rounded-xl overflow-hidden">

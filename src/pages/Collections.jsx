@@ -24,12 +24,14 @@ const months = [
 ];
 const currentYear = new Date().getFullYear();
 const years = Array.from({ length: 10 }, (_, i) => currentYear + i);
+const limitOptions = [10, 15, 20, 30, 50, 100];
 
 const Collections = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
+  const [limit, setLimit] = useState(10);
 
   const { data: { categories = [] } = {}} = useGetCategoriesQuery();
 
@@ -82,6 +84,19 @@ const Collections = () => {
                 ))}
               </select>
             </div>
+            <div className="w-[80px]">
+              <select
+                value={limit}
+                onChange={(e) => setLimit(Number(e.target.value))}
+                className="py-2.5 px-5 rounded-xl w-full transition duration-300 focus-within:ring-1 ring-offset-[2px] ring-blue-800 ring-opacity-60 relative bg-transparent border border-zinc-300"
+              >
+                {limitOptions.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
       </div>
 
@@ -90,6 +105,7 @@ const Collections = () => {
         categoryName={tabs[selectedIndex]?.name}
         month={month}
         year={year}
+        limit={limit}
       />
 
       <NewCollection isOpen={isOpen} onClose={() => setIsOpen(false)} />

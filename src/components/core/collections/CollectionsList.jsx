@@ -6,14 +6,14 @@ import { TbAlertCircle } from 'react-icons/tb';
 import Button from '@/components/global/Button';
 import ContributionsTable from './ContributionsTable.jsx';
 
-const CollectionsList = ({ categoryId, month, year, categoryName }) => {
+const CollectionsList = ({ categoryId, month, year, categoryName, limit }) => {
     const {
       data: { pages = [] } = {},
       isFetching,
       isLoading: isCollectionsLoading,
       hasNextPage,
       fetchNextPage,
-    } = useGetContributionsQuery({ category: categoryId === 'all' ? undefined : categoryId, month, year, limit: 10 });
+    } = useGetContributionsQuery({ category: categoryId === 'all' ? undefined : categoryId, month, year, limit });
  
    const collections = useMemo(() => {
       return pages.flatMap((p) => p?.contributions || []);
@@ -96,6 +96,7 @@ CollectionsList.propTypes = {
   month: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   year: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   categoryName: PropTypes.string,
+  limit: PropTypes.number,
 };
 
 export default CollectionsList;
